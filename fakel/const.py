@@ -7,7 +7,7 @@ MAX_WORKERS = 1
 
 DEBUG_MODE = os.getenv('DEBUG_MODE', 'false').lower() == 'true'
 
-TELEGRAM_SEND_BLOCK = os.getenv('TELEGRAM_SEND_BLOCK', 'false') == 'true'
+TELEGRAM_SEND_BLOCK = os.getenv('TELEGRAM_SEND_BLOCK', 'false').lower() == 'true'
 
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 
