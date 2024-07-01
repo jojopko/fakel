@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  fakel:
+    build:
+      context: fakel
+      dockerfile: Dockerfile
+    hostname: fakel
+    command: python -m fakel
+    env_file:
+      - .env
+    volumes:
+      - ./fakel:/app/fakel
+    ports:
+      - '8000:8000'
