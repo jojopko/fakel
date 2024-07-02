@@ -21,9 +21,9 @@ async def _do_work(message: VKEventModel):
 
 
 async def message_worker(queue: Queue):
+    logger.info('Обработчик сообщений запущен')
     while True:
         try:
-            logger.info('Обработчик сообщений запущен')
             message = await queue.get()
             await _do_work(message)
         except asyncio.CancelledError:
