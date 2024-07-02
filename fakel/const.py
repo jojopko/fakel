@@ -9,12 +9,13 @@ DEBUG_MODE = os.getenv('DEBUG_MODE', 'false').lower() == 'true'
 
 TELEGRAM_SEND_BLOCK = os.getenv('TELEGRAM_SEND_BLOCK', 'false').lower() == 'true'
 
-ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
+ACCESS_TOKEN = os.getenv('ACCESS_TOKEN', '')
 
 VK_GROUP_ID = int(os.getenv('VK_GROUP_ID', -1))
 
 SUPPORT_API_VERSION = '5.199'
 
-TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN')
+TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN', '')
 
-TG_CHANNEL_NAME = os.getenv('TG_CHANNEL_NAME')
+TG_CHANNEL_NAME = os.getenv('TG_CHANNEL_NAME', '')
+TG_CHANNEL_NAME = int(TG_CHANNEL_NAME) if TG_CHANNEL_NAME.isnumeric() else TG_CHANNEL_NAME
