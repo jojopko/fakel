@@ -1,26 +1,34 @@
 import asyncio
 from asyncio import Queue
 from logging import getLogger
+from typing import Optional
 
 from fakel.models import VKEventModel
-from fakel.telegram import send_message
+from fakel.telegram import TelegramBotService
 
 logger = getLogger(__name__)
 
+telegram: Optional[TelegramBotService] = None
 
-async def wall_post_new_handler(message: VKEventModel):
+
+async def _wall_post_new_handler(message: VKEventModel):
     """Обработка события `wall_post_new`"""
     text = message.object.text
-    await send_message(text)
+    await telegram.send_message(text)
 
 
 async def _do_work(message: VKEventModel):
-    logger.debug('Обработка сообщения %s', message.model_dump_json())
+    logger.debug('Сообщение: %s', message.model_dump_json())
+    logger.info('Обработка сообщения %s', message.event_id)
     if message.type == 'wall_post_new':
-        await wall_post_new_handler(message)
+        await _wall_post_new_handler(message)
+    else:
+        logger.warning('Сообщение %s не обработано! Тип: %s', message.event_id, message.type)
 
 
 async def message_worker(queue: Queue):
+    global telegram
+    telegram = TelegramBotService()
     logger.info('Обработчик сообщений запущен')
     while True:
         try:
@@ -32,5 +40,3 @@ async def message_worker(queue: Queue):
             logger.warning('Ошибка обработчика сообщений', exc_info=e)
         except BaseException as be:
             logger.warning('Ошибка обработчика сообщений', exc_info=be)
-
-

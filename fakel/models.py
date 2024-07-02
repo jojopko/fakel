@@ -1,5 +1,7 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from typing import List, Optional
+
+from fakel.const import APP_SECRET
 
 
 class DonutModel(BaseModel):
@@ -38,3 +40,9 @@ class VKEventModel(BaseModel):
     type: str
     object: Optional[ObjectModel] = None
     secret: str
+
+    @field_validator('secret')
+    def secret_must_match(cls, value):
+        if value != APP_SECRET:
+            raise ValueError("Поле 'secret' должно быть равно значению перменной окружения 'APP_SECRET'!")
+        return value
