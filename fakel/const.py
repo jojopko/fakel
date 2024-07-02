@@ -19,3 +19,6 @@ TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN', '')
 
 TG_CHANNEL_NAME = os.getenv('TG_CHANNEL_NAME', '')
 TG_CHANNEL_NAME = int(TG_CHANNEL_NAME) if TG_CHANNEL_NAME.isnumeric() else TG_CHANNEL_NAME
+
+BOT_ADMIN_TELEGRAM_IDS = os.getenv('BOT_ADMIN_TELEGRAM_IDS', '')
+BOT_ADMIN_TELEGRAM_IDS = [int(admin_id) for admin_id in BOT_ADMIN_TELEGRAM_IDS.split(',')]
