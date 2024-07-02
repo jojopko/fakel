@@ -5,6 +5,7 @@ from logging import getLogger, Logger
 from typing import Optional
 
 from fastapi import FastAPI
+from fastapi.responses import PlainTextResponse
 
 from fakel.const import ACCESS_TOKEN, VK_GROUP_ID, SUPPORT_API_VERSION
 from fakel.logger import init_logger
@@ -48,10 +49,11 @@ async def confirmation():
                 'Authorization': 'Bearer %s' % ACCESS_TOKEN
             }
         )
+    logger.debug('Ответ api.vk.com getCallbackConfirmationCode: %s', result.json())
     return result.json()['response']['code']
 
 
-@app.post('/')
+@app.post('/', response_class=PlainTextResponse)
 async def handle(update_data: VKEventModel):
     """Обработка событий из VK API. Подробнее: https://dev.vk.com/ru/api/callback/getting-started"""
     try:
