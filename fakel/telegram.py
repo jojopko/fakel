@@ -32,11 +32,16 @@ class TelegramBotService:
 
         # Документация https://core.telegram.org/bots/api#sendmessage
         async with httpx.AsyncClient() as client:
-            result = await client.post(
+            reponse = await client.post(
                 f'{self._BASE_URL}/sendMessage',
                 data={
                     'chat_id': '@%s' % TG_CHANNEL_NAME,
                     'text': text
                 }
             )
-        logger.debug('Ответ от api.telegram.org: %s', result.json())
+        result = reponse.json()
+        logger.debug('Ответ от api.telegram.org: %s', result)
+
+        if not result['ok']:
+            logger.warning('Ошибка при обработке запроса к api.telegram.org: %s', result)
+
