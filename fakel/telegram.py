@@ -1,9 +1,14 @@
+from typing import Optional
+
 import httpx
 from logging import getLogger
 
 from fakel.const import TG_BOT_TOKEN, TG_CHANNEL_NAME, TELEGRAM_SEND_BLOCK
 
 logger = getLogger(__name__)
+
+TELEGRAM_SEND_PHOTO_LIMIT = 1024
+TELEGRAM_SEND_MESSAGE_LIMIT = 4096
 
 
 class TelegramBotService:
@@ -22,26 +27,70 @@ class TelegramBotService:
                 logger.warning('Включена блокировка сообщений в telegram')
             self._initialized = True
 
-    async def send_message(self, text: str):
+    async def send_message(self, text: str, pic_url: Optional[str] = None):
         """Отправка текстового сообщения"""
         if self._is_block:
             return
 
         if not text:
+            logger.warning('Сообщение пустое!')
             raise ValueError('Текст не может быть пустым!')
+
+        if len(text) > TELEGRAM_SEND_MESSAGE_LIMIT:
+            logger.warning('Больше допустимого значения! Лимит: %s. Текущее: %s',
+                           TELEGRAM_SEND_MESSAGE_LIMIT, len(text))
+            raise ValueError('Сообщение слишком большое')
 
         # Документация https://core.telegram.org/bots/api#sendmessage
         async with httpx.AsyncClient() as client:
-            reponse = await client.post(
+            if pic_url:
+                link_preview_options = {
+                    'link_preview_options': {"is_disabled": pic_url, "url": pic_url, "show_above_text": True}
+                }
+            else:
+                link_preview_options = {}
+
+            response = await client.post(
                 f'{self._BASE_URL}/sendMessage',
                 data={
                     'chat_id': '@%s' % TG_CHANNEL_NAME,
-                    'text': text
+                    'text': text,
+                    **link_preview_options
                 }
             )
-        result = reponse.json()
+
+        result = response.json()
         logger.debug('Ответ от api.telegram.org: %s', result)
 
         if not result['ok']:
             logger.warning('Ошибка при обработке запроса к api.telegram.org: %s', result)
 
+    async def send_photo(self, photo_url: str, caption: str):
+        """Отправка сообщения с фотографией"""
+        if self._is_block:
+            return
+
+        if len(caption) > TELEGRAM_SEND_PHOTO_LIMIT:
+            logger.warning('Больше допустимого значения! Лимит: %s. Текущее: %s',
+                           TELEGRAM_SEND_PHOTO_LIMIT, len(caption))
+            raise ValueError('Сообщение слишком большое')
+
+        if not photo_url:
+            logger.warning('Нет фотографии!')
+            raise ValueError('Нет фотографии')
+
+        # Документация https://core.telegram.org/bots/api#sendphoto
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f'{self._BASE_URL}/sendPhoto',
+                data={
+                    'chat_id': '@%s' % TG_CHANNEL_NAME,
+                    'photo': photo_url,
+                    'caption': caption
+                }
+            )
+        result = response.json()
+        logger.debug('Ответ от api.telegram.org: %s', result)
+
+        if not result['ok']:
+            logger.warning('Ошибка при обработке запроса к api.telegram.org: %s', result)
