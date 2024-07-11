@@ -89,12 +89,33 @@ class HeaderModel(BaseModel):
     date: int
 
 
+class PostSourceModel(BaseModel):
+    type: str
+
+
 class AttachmentsMetaModel(BaseModel):
     primary_mode: str
 
 
+class CopyHistoryModel(BaseModel):
+    inner_type: str
+    compact_attachments_before_cut: int
+    header: Optional[HeaderModel] = None
+    type: str
+    attachments: List[AttachmentModel] = []
+    attachments_meta: Optional[AttachmentsMetaModel] = None
+    date: int
+    from_id: int
+    id: int
+    owner_id: int
+    post_source: PostSourceModel
+    post_type: str
+    text: str
+
+
 class ObjectModel(BaseModel):
     inner_type: str
+    copy_history: Optional[List[CopyHistoryModel]] = None
     can_edit: int
     created_by: int
     can_delete: int
@@ -110,6 +131,7 @@ class ObjectModel(BaseModel):
     from_id: int
     id: int
     is_favorite: bool
+    reaction_set_id: Optional[str] = None
     owner_id: int
     post_type: str
     text: str
