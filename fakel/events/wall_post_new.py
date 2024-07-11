@@ -18,8 +18,11 @@ async def _make_message_with_image(message: VKEventModel, photos: List[PhotoMode
     photo = photos[0].sizes[0].url  # FIXME Придумать алгоритм выбора наибольшего размера
 
     if use_hack:
-        text = textwrap.fill(message.object.text, width=TELEGRAM_SEND_MESSAGE_LIMIT, max_lines=1, placeholder='')
-        await TelegramBotService().send_message(text, pic_url=photo)
+        batches = textwrap.wrap(message.object.text, width=TELEGRAM_SEND_MESSAGE_LIMIT, break_long_words=False,
+                                replace_whitespace=False)
+        await TelegramBotService().send_message(batches[0], pic_url=photo)
+        for batch in batches[1:]:
+            await TelegramBotService().send_message(batch)
     else:
         text = textwrap.fill(message.object.text, width=TELEGRAM_SEND_PHOTO_LIMIT, max_lines=1, placeholder='')
         await TelegramBotService().send_photo(photo, caption=text)
@@ -27,7 +30,8 @@ async def _make_message_with_image(message: VKEventModel, photos: List[PhotoMode
 
 async def _make_messages_without_images(message: VKEventModel):
     """Отправляет сообщение без кортинки"""
-    batches = textwrap.wrap(message.object.text, width=TELEGRAM_SEND_MESSAGE_LIMIT, replace_whitespace=False)
+    batches = textwrap.wrap(message.object.text, width=TELEGRAM_SEND_MESSAGE_LIMIT, break_long_words=False,
+                            replace_whitespace=False)
     for batch in batches:
         await TelegramBotService().send_message(batch)
 
@@ -40,5 +44,7 @@ async def wall_post_new_handler(message: VKEventModel):
         if att.type in ATTACHMENTS_AVAIBLE_TYPES
     ]
 
-    await _make_message_with_image(message, photos)
-    await _make_messages_without_images(message)
+    if photos:
+        await _make_message_with_image(message, photos)
+    else:
+        await _make_messages_without_images(message)

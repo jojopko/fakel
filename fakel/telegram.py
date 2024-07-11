@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 
 import httpx
@@ -44,19 +45,28 @@ class TelegramBotService:
         # Документация https://core.telegram.org/bots/api#sendmessage
         async with httpx.AsyncClient() as client:
             if pic_url:
-                link_preview_options = {
-                    'link_preview_options': {"is_disabled": pic_url, "url": pic_url, "show_above_text": True}
+                data = {
+                    'chat_id': '@%s' % TG_CHANNEL_NAME,
+                    'text': text,
+                    'link_preview_options': json.dumps({
+                        'is_disabled': False,
+                        'url': pic_url,
+                        'prefer_small_media': False,
+                        'prefer_large_media': True,
+                        'show_above_text': True
+                    })
                 }
             else:
-                link_preview_options = {}
+                data = {
+                    'chat_id': '@%s' % TG_CHANNEL_NAME,
+                    'text': text
+                }
+
+            logger.debug('REQUEST DATA: %s', data)
 
             response = await client.post(
                 f'{self._BASE_URL}/sendMessage',
-                data={
-                    'chat_id': '@%s' % TG_CHANNEL_NAME,
-                    'text': text,
-                    **link_preview_options
-                }
+                data=data
             )
 
         result = response.json()
