@@ -8,8 +8,8 @@ from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 
 from fakel.const import ACCESS_TOKEN, VK_GROUP_ID, SUPPORT_API_VERSION
-from fakel.logger import init_logger
-from fakel.message_worker import message_worker
+from fakel.utils.logger import init_logger
+from fakel.utils.message_worker import message_worker
 from fakel.models import VKEventModel
 
 logger: Optional[Logger] = None

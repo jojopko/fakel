@@ -3,7 +3,7 @@ from logging import getLogger
 from typing import List
 
 from fakel.models import VKEventModel, PhotoModel
-from fakel.telegram import TelegramBotService, TELEGRAM_SEND_MESSAGE_LIMIT, TELEGRAM_SEND_PHOTO_LIMIT
+from fakel.utils.telegram import TelegramBotService, TELEGRAM_SEND_MESSAGE_LIMIT, TELEGRAM_SEND_PHOTO_LIMIT
 
 logger = getLogger(__name__)
 
