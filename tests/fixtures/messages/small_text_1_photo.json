@@ -1,0 +1,111 @@
+{
+    "group_id": 217991594,
+    "type": "wall_post_new",
+    "event_id": "e2815046368ca39fed54c35c7430a33ce9c52f13",
+    "v": "5.199",
+    "object": {
+        "inner_type": "wall_wallpost",
+        "can_edit": 1,
+        "created_by": 361776391,
+        "can_delete": 1,
+        "donut": {
+            "is_donut": false
+        },
+        "comments": {
+            "count": 0
+        },
+        "marked_as_ads": 0,
+        "compact_attachments_before_cut": 0,
+        "hash": "2OoWHAnKyzPTZm1UryfMz2PaLYkG",
+        "header": {
+            "photo": {
+                "source_id": -217991594
+            },
+            "title": {
+                "source_id": -217991594
+            },
+            "date": 1720189924
+        },
+        "type": "post",
+        "attachments": [
+            {
+                "type": "photo",
+                "photo": {
+                    "album_id": -7,
+                    "date": 1720189924,
+                    "id": 457239051,
+                    "owner_id": -217991594,
+                    "access_key": "24fa8f056eccb804e4",
+                    "post_id": 106,
+                    "sizes": [
+                        {
+                            "height": 35,
+                            "type": "s",
+                            "width": 75,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=75x35"
+                        },
+                        {
+                            "height": 61,
+                            "type": "m",
+                            "width": 130,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=130x61"
+                        },
+                        {
+                            "height": 282,
+                            "type": "x",
+                            "width": 604,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=604x282"
+                        },
+                        {
+                            "height": 365,
+                            "type": "y",
+                            "width": 783,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=783x365"
+                        },
+                        {
+                            "height": 87,
+                            "type": "o",
+                            "width": 130,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=130x87"
+                        },
+                        {
+                            "height": 133,
+                            "type": "p",
+                            "width": 200,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=200x133"
+                        },
+                        {
+                            "height": 213,
+                            "type": "q",
+                            "width": 320,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=320x213"
+                        },
+                        {
+                            "height": 340,
+                            "type": "r",
+                            "width": 510,
+                            "url": "https://sun9-41.userapi.com/impg/LDeovPfWLnCy_2zEsqp3TE-FCRkiOX3KngmlWg/F7za5V8P5ck.jpg?quality=95&as=32x15,48x22,72x34,108x50,160x75,240x112,360x168,480x224,540x252,640x298,720x336,783x365&sign=7cb05a2c1cd0d9b42c6be048003d35f5&from=bu&cs=510x340"
+                        }
+                    ],
+                    "text": "",
+                    "user_id": 100,
+                    "web_view_token": "3e146be0754eeca297",
+                    "has_tags": false
+                },
+                "style": "full"
+            }
+        ],
+        "attachments_meta": {
+            "primary_mode": "single"
+        },
+        "date": 1720189924,
+        "from_id": -217991594,
+        "id": 106,
+        "is_favorite": false,
+        "reaction_set_id": "reactions",
+        "owner_id": -217991594,
+        "post_type": "post",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus ex. In porta odio augue, vitae semper sapien hendrerit ac. Fusce in ornare tellus. Proin tristique quis sem ut gravida. Pellentesque non velit velit. Curabitur vel risus aliquet, laoreet sapien ut, sodales diam. \n\nMaecenas eget eros dolor. Aliquam ornare at nisi et ultrices. Phasellus eleifend eros odio, ut lobortis lacus placerat ac. Sed elementum molestie luctus. Nulla fermentum, eros quis porttitor malesuada, nisl metus maximus nisl, eu fermentum lorem lectus efficitur magna. Cras sed condimentum sapien. Morbi volutpat, mi a ornare vehicula, elit justo euismod magna, vitae pretium ligula lacus vitae purus. Aliquam eu nisl non elit efficitur eleifend. Aliquam pellentesque erat ac lacus bibendum, eget tincidunt tortor interdum. Suspendisse eu neque quis metus tempus commodo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu tellus ex."
+    },
+    "secret": "big_secret"
+}

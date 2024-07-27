@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel, field_validator
 
 from fakel.const import APP_SECRET
@@ -61,7 +61,7 @@ class VideoModel(BaseModel):
     title: str
     is_favorite: bool
     track_code: str
-    repeat: int
+    repeat: Optional[int] = None
     type: str
     views: int
     local_views: int
@@ -135,6 +135,13 @@ class ObjectModel(BaseModel):
     owner_id: int
     post_type: str
     text: str
+
+    def get_preferred_object(self) -> Union['ObjectModel', 'CopyHistoryModel']:
+        """Возвращает первый объект из copy_history или сам объект, если copy_history - пуст"""
+        if self.copy_history:
+            return self.copy_history[0]
+        else:
+            return self
 
 
 class VKEventModel(BaseModel):
