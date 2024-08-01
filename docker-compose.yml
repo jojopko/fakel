@@ -5,11 +5,9 @@ services:
     build:
       context: fakel
       dockerfile: Dockerfile
-    hostname: fakel
+    image: jojopko/fakel:latest
     command: python -m fakel
-    env_file:
-      - .env
-    volumes:
-      - ./fakel:/app/fakel
     ports:
-      - '8000:8000'
+      - '127.0.0.1:8000:8000'
+    environment:
+      DEBUG_MODE: 'false'

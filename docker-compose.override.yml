@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  fakel:
+    environment:
+      DEBUG_MODE: 'true'
+    env_file:
+      - .env
+    volumes:
+      - ./fakel:/app/fakel

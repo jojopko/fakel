@@ -1,7 +1,14 @@
 .PHONY: start, stop
 
 start:
-	docker-compose -f ./docker-compose.yml up --build -d
+	docker compose up --build -d
 
 stop:
-	docker-compose -f ./docker-compose.yml down --rmi local
+	docker compose down --rmi local
+
+deploy:
+	docker compose up -d
+
+build:
+	docker build fakel/ -t jojopko/fakel:latest
+
